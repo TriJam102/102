@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - BSCS 102</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --primary-color: #975f0c; 
+            --accent-color: #e08b0b; 
+            --secondary-color: #ffffff; 
+            --light-bg: #582b11; 
+            --white: #7a350d; 
+            --card-bg: #3D1203;
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            background-color: var(--light-bg);
+            min-height: 200vh; 
+        }
+
+        .sticky-header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: var(--white); 
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: var(--secondary-color);
+            
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .sticky-header.load-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .sticky-header h1 { 
+            color: var(--primary-color); 
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        .sticky-header nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .sticky-header nav a:hover { color: var(--primary-color); }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .announcement-page {
+            padding: 120px 0 80px 0;
+            background-color: var(--light-bg); 
+            text-align: center;
+        }
+
+        .announcement-page h2 {
+            font-size: 3em;
+            color: var(--accent-color); 
+            margin-bottom: 5px;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+
+        .announcement-page .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            color: #ccc; 
+        }
+
+        .announcement-list {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 30px;
+        }
+
+        .reveal-once {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-once.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .announcement-card {
+            background-color: var(--card-bg); 
+            padding: 25px;
+            text-align: left;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgb(247, 214, 106);
+            
+            opacity: 0;
+            transform: scale(0.95) translateY(50px);
+            
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, border-left-color 0.3s;
+        }
+        
+        .announcement-card.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            transition-delay: 0s; 
+        }
+        /* ------------------------------------- */
+
+        .announcement-card:hover {
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .announcement-card h3 {
+            color: var(--accent-color);
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            font-family: 'Bungee Spice', sans-serif;
+        }
+
+        .announcement-card .date {
+            color: var(--primary-color);
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .announcement-card p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 500px) {
+            .sticky-header nav { display: none; }
+            .announcement-page h2 { font-size: 2.2em; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="sticky-header" id="mainHeader"> 
+        <h1>BSCS 102</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="announcements.html">Announcements</a>
+            <a href="officers.html">Officers</a>
+            <a href="about.html">About</a>
+            <a href="developers.html">Web Developers</a>
+        </nav>
+    </header>
+
+    <section class="announcement-page">
+        <div class="container">
+            <h2 class="reveal-once">ANNOUNCEMENTS</h2> 
+            <p class="subtitle reveal-once">Latest updates and news from the BSCS 102 Officers.</p>
+
+            <div class="announcement-list">
+                
+                <div class="announcement-card">
+                    <h3>COMP101 QUIZ NO. 7</h3>
+                    <span class="date">Posted: December 03, 2025</span>
+                    <p>
+                        Quiz/Seatwork <br> • 20 points </p>
+                </div>
+                
+                <div class="announcement-card">
+                    <h3>COMP101 FINAL PROJECT</h3>
+                    <span class="date">Posted: November 21, 2025</span>
+                    <p>
+                        Major Exam <br> • 50 points</p>
+                </div>
+
+                <div class="announcement-card">
+                    <h3>GEE003 FINAL PERFORMANCE- INFOGRAPHICS</h3>
+                    <span class="date">Posted: December 03, 2025</span>
+                    <p>
+                        Creating Infographics <br> • 100 points</p>
+                </div>
+
+                <div class="announcement-card">
+                    <h3>NSTP001 FINAL EXAM (VIDEO COMPILATIION)</h3>
+                    <span class="date">Posted: December 01, 2025</span>
+                    <p>
+                        Create a self-made video or video compilation of ALL the following core topics aligning with the core values, MakaDIYOS, Maka-TAO, Maka-Bansa and Maka-Kalikasan.</p>
+                </div>
+
+                <div class="announcement-card">
+                    <h3>COMP101 WRITTEN EXAMINATION</h3>
+                    <span class="date">Exam date: December 10, 2025</span>
+                    <p>
+                        Room 1601 <br> • 1:00 - 3:00 pm </p>
+                </div>
+
+                <div class="announcement-card">
+                    <h3>COMP102 WRITTEN EXAMINATION</h3>
+                    <span class="date">Exam date: December 11, 2025</span>
+                    <p>
+                        Room 1501 <br> • 7:00 - 9:00 pm </p>
+                </div> 
+
+                <div class="announcement-card">
+                    <h3>COSC101 WRITTEN EXAMINATION</h3>
+                    <span class="date">Exam date: December 12, 2025</span>
+                    <p>
+                        Room 1501 <br> • 7:00 - 9:00 pm </p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('mainHeader');
+            header.classList.add('load-active'); 
+
+            const loopingElements = document.querySelectorAll('.announcement-card');
+
+            const loopingObserverCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.classList.remove('active');
+                    }
+                });
+            };
+
+            const loopingObserver = new IntersectionObserver(loopingObserverCallback, {
+                root: null, 
+                threshold: 0.2, 
+            });
+            
+            loopingElements.forEach(element => {
+                loopingObserver.observe(element);
+            });
+
+
+            const onceElements = document.querySelectorAll('.reveal-once');
+
+            const onceObserverCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            };
+
+            const onceObserver = new IntersectionObserver(onceObserverCallback, {
+                root: null,
+                threshold: 0.5,
+            });
+
+            onceElements.forEach(element => {
+                onceObserver.observe(element);
+            });
+        });
+    </script>
+    </body>
+</html>

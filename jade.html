@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jade - Developer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --primary-color: #975f0c; 
+            --accent-color: #e08b0b; 
+            --secondary-color: #ffffff; 
+            --light-bg: #582b11; 
+            --white: #7a350d;
+            --card-bg: #8c5709; 
+            --section-bg: #4a2107; 
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            background-color: var(--light-bg);
+        }
+        .sticky-header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: var(--white); 
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: var(--secondary-color);
+        }
+        .sticky-header h1 { 
+            color: var(--primary-color); 
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        .sticky-header nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .sticky-header nav a:hover { color: var(--primary-color); }
+
+        .personal-section {
+            padding-top: 120px;
+            padding-bottom: 50px;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-section {
+            background-color: var(--section-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 2fr 1fr; 
+            gap: 40px;
+        }
+
+        .about-info h2 {
+            font-size: 2em;
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            font-family: 'Bungee Spice', sans-serif;
+        }
+        .about-info p {
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .fav-section {
+            text-align: center;
+            border-left: 1px solid var(--primary-color);
+            padding-left: 20px;
+        }
+        .fav-section h3 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            margin-top: 20px;
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 10px auto; 
+            display: block; 
+            background-size: cover; 
+            background-position: center;
+        }
+        
+        .color-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .color-dot {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary-color);
+        }
+        .quotes {
+            font-style: italic;
+            font-size: 1em;
+            color: var(--secondary-color);
+            margin-top: 15px;
+        }
+        .fav-section p {
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .photo-gallery-section {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--primary-color);
+            border-top: 1px solid var(--primary-color);
+        }
+        .photo-gallery-section h2 {
+            font-size: 2em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgb(247, 214, 106);
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--card-bg);
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-color);
+        }
+
+        .contact-section {
+            background-color: var(--card-bg);
+            padding: 25px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgb(247, 214, 106);
+            border-top: 5px solid var(--accent-color);
+            text-align: center;
+        }
+        .contact-section h2 {
+            font-size: 2em;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+            display: inline-block;
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+        .contact-links div {
+            padding: 10px;
+            background-color: var(--section-bg); 
+            border-radius: 5px;
+        }
+        .contact-links h4 {
+            color: var(--accent-color);
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .contact-links p {
+            font-size: 1em;
+            word-wrap: break-word; 
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            .fav-section {
+                border-left: none;
+                padding-left: 0;
+                padding-top: 20px;
+                border-top: 1px solid var(--primary-color);
+            }
+            .contact-links, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="sticky-header">
+        <h1>BSCS 102</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="announcements.html">Announcements</a>
+            <a href="officers.html">Officers</a>
+            <a href="about.html">About</a>
+            <a href="developers.html">Web Developers</a>
+            <a href="developers.html" class="back-button">← Back to Web Developers</a>
+        </nav>
+    </header>
+
+    <section class="personal-section">
+        <div class="container">
+            
+            <div class="about-section">
+                
+                <div class="about-info">
+                    <h2>ABOUT ME - JADE</h2>
+                    <p>
+                    I'm Jade, the designated chill creative of BSCS 102! I have a laid-back personality and consider myself a master of embracing the nonchalant life—especially when it comes to getting extra sleep. Coffee is my non-negotiable fuel for creativity!
+                        </p>
+                    <p>
+                    I am a multifaceted creative who finds solace in the quiet hours of editing, dancing to my own beat, and freezing moments in time through photography. I also love playing musical instruments, which lets me find rhythm outside of code.
+                        </p>
+                    <p>
+                    Solitude is my happy place. It’s where I can truly listen, observe the world around me, and let my creative ideas flourish before bringing them back to the team.
+                        </p>
+                    </div>
+                
+                <div class="fav-section">
+                    <div class="profile-photo" style="background-image: url('pictrix.jpg');"></div>
+                    
+                    <h3>FAV COLOR</h3>
+                    <ul class="color-list">
+                        <li class="color-dot" style="background-color: #68c7ec;" title="Mint Green"></li>
+                        <li class="color-dot" style="background-color: #497be7;" title="Lavender"></li>
+                        <li class="color-dot" style="background-color: #2442ec;" title="Plum"></li>
+                    </ul>
+
+                    <h3>QUOTES IN LIFE</h3>
+                    <p class="quotes">
+                        "Do everything in love."</p>
+                        <br><br><br> <p>“1 Corinthians 16:14”</p>
+                    <p class="quotes">
+                        </p>
+                </div>
+            </div>
+
+            <div class="photo-gallery-section">
+                <h2>Jade's Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" style="background-image: url('jadepic.jfif');"></div>
+                    <div class="gallery-item" style="background-image: url('jadepic2.jfif');"></div>
+                    <div class="gallery-item" style="background-image: url('jadepic3.jfif');"></div>
+                </div>
+            </div>
+            
+            <div class="contact-section">
+                <h2>CONTACT US</h2>
+                <div class="contact-links">
+                    
+                    <div>
+                        <h4>tjhayag@kld.edu.ph</h4>
+                        <p></p>
+                    </div>
+                    
+                    <div>
+                        <h4>09940263261</h4>
+                        <p></p>
+                    </div>
+                    
+                    <div>
+                        <h4>Trixie Jade Hayag</h4>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+</body>
+</html>

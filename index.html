@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - BSCS 102</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+    
+</head>
+<body>
+    <audio autoplay loop hidden>
+    <source src="washed.mp3.mp3" type="audio/mpeg">
+</audio>
+
+    <header class="sticky-header" id="mainHeader"> 
+        <h1>BSCS 102</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="announcements.html">Announcements</a>
+            <a href="officers.html">Officers</a>
+            <a href="about.html">About</a>
+            <a href="developers.html">Web Developers</a>
+        </nav>
+    </header>
+
+    <style> 
+        /* ---------------------------------------------------- */
+        /* --- UNIFIED CSS STYLES --- */
+        /* ---------------------------------------------------- */
+
+        /* --- Global & Root Variables (Unified) --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            /* Color Variables (Unified) */
+            --primary-color: #975f0c; 
+            --accent-color: #e08b0b; 
+            --secondary-color: #ffffff; 
+            --white: #7a350d; 
+            --light-bg: #582b11; 
+            --card-bg: #3D1203; 
+            --section-gap: 50px; 
+            
+            /* Dino Game Colors (Monochrome/Dark Theme) */
+            --dino-ground: #7a350d; 
+            --dino-line: #b88957; 
+            --dino-obstacle: #b88957; 
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            background-color: var(--light-bg);
+            /* Set a minimum height to ensure scrolling is possible for reveal effects */
+            min-height: 200vh; 
+        }
+
+        /* --- GLOBAL CONTENT WIDTH (Unified) --- */
+        .container {
+            width: 95%; 
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+        
+        /* --- HEADER STYLES (Unified) --- */
+        .sticky-header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: var(--white); 
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adjusted shadow color from About CSS */
+            color: var(--secondary-color);
+            
+            /* Initial Hidden State for Header (From Home JS) */
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .sticky-header.load-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .sticky-header h1 { 
+            color: var(--primary-color); 
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        .sticky-header nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .sticky-header nav a:hover { color: var(--primary-color); }
+
+
+        /* --- WELCOME SECTION STYLES --- */
+        .welcome-section {
+            padding-top: 150px; 
+            padding-bottom: 80px;
+            text-align: center;
+            min-height: 50vh; 
+            position: relative; 
+            overflow: hidden; 
+            
+            background-image: url(building.jpg); 
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center center;
+            box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4); 
+            
+            margin-bottom: var(--section-gap); 
+        }
+        .welcome-content {
+            position: relative;
+            z-index: 10; 
+            color: var(--secondary-color); 
+        }
+        .welcome-section h2 {
+            font-size: 3.5em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        .welcome-section p {
+            font-size: 1.5em;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            color: var(--secondary-color); 
+            font-family: 'Playfair Display', serif; 
+        }
+
+        /* --- ANNOUNCEMENT SECTION STYLES --- */
+        .announcement-section { 
+            padding: 50px 0;
+            background-color: var(--light-bg); 
+            text-align: center;
+            margin-bottom: var(--section-gap);
+        }
+        .announcement-section h2 {
+            font-size: 2.5em; 
+            color: var(--accent-color); 
+            margin-bottom: 5px;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        .announcement-section .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            color: #ccc; 
+        }
+        .announcement-list {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 30px;
+        }
+        .announcement-card {
+            background-color: #3D1203; 
+            padding: 25px;
+            text-align: left;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgb(247, 214, 106);
+            /* Initial Hidden State for Looping Scroll Reveal (handled by .reveal class now) */
+            /* Removed redundant specific .announcement-card reveal styles */
+        }
+        .announcement-card.active {
+            transition-delay: 0s; 
+        }
+        .announcement-card:hover {
+            border-left: 5px solid var(--accent-color);
+        }
+        .announcement-card h3 {
+            color: var(--accent-color);
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            font-family: 'Bungee Spice', sans-serif;
+        }
+        .announcement-card .date {
+            color: var(--primary-color);
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .announcement-card p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: var(--secondary-color);  
+        }
+
+        /* --- OFFICERS SECTION STYLES --- */
+        .officers-section {
+            padding-top: 50px; 
+            min-height: 100vh;
+            padding-bottom: 80px;
+            background-color: var(--light-bg); 
+            margin-bottom: var(--section-gap); 
+        }
+        .officers-section .title {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 5px;
+            color: var(--primary-color); 
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            font-family: 'Bungee Spice', sans-serif;
+        }
+        .officers-section .subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: var(--secondary-color); 
+        }
+        .org-chart-style {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 40px;
+        }
+        .level {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            padding-top: 20px;
+            margin-bottom: 0; 
+        }
+        .level::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background-color: var(--accent-color);
+        }
+        .level-1::before { display: none; }
+        .level-3::after, .level-4::after, .level-5::after {
+            content: '';
+            position: absolute;
+            top: 20px; 
+            width: 90%; 
+            max-width: 1100px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        .grid-3-cols, .grid-4-cols {
+            display: grid;
+            gap: 20px;
+            width: 100%;
+            padding: 0 5%;
+        }
+        .grid-3-cols {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            max-width: 900px;
+        }
+        .grid-4-cols {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            max-width: 1100px;
+        }
+        .officer-card {
+            background: #3D1203; 
+            padding: 15px 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgb(247, 214, 106);
+            border-top: 5px solid var(--primary-color);
+            position: relative; 
+            z-index: 10;
+            margin-top: 20px; 
+        }
+        .level-3 .officer-card::after, .level-4 .officer-card::after, .level-5 .officer-card::after {
+            content: '';
+            position: absolute;
+            top: -22px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 22px; 
+            background-color: var(--accent-color);
+            z-index: -1; 
+        }
+        .level-1 .officer-card::after, .level-2 .officer-card::after { display: none; }
+        .card-president, .card-vp {
+            max-width: 300px;
+            margin: 0 auto 0 auto; 
+            border-top: 5px solid var(--accent-color);
+        }
+        .officer-photo {
+            width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--accent-color); 
+            margin: 0 auto 8px auto; display: block; background-size: cover; 
+            background-position: center; background-repeat: no-repeat;
+        }
+        .officer-card h3 {
+            font-size: 0.9em; font-weight: 700; margin: 4px 0 0 0; color: var(--secondary-color);
+        }
+        .officer-card .position {
+            font-size: 0.75em; font-weight: 600; color: var(--accent-color);
+            text-transform: uppercase; margin-bottom: 4px;
+        }
+
+        /* ---------------------------------------------------- */
+        /* --- ABOUT US SECTION STYLES (NEWLY MERGED) --- */
+        /* ---------------------------------------------------- */
+        .about-us-section { 
+            background-color: var(--light-bg); 
+            color: var(--secondary-color); 
+            padding: 50px 0 80px 0; /* Adjusted padding-top for flow */
+            text-align: center; 
+            margin-bottom: var(--section-gap);
+        }
+        .about-us-section h2 { 
+            font-size: 2.5em; 
+            margin-bottom: 30px; 
+            border-bottom: 3px solid var(--primary-color); 
+            display: inline-block; 
+            padding-bottom: 5px; 
+            color: var(--accent-color); 
+            font-family: 'Bungee Spice', sans-serif; 
+        }
+        .about-us-section h3 { 
+            font-size: 1.5em; 
+            margin: 40px 0 15px 0; 
+            color: var(--accent-color); 
+            text-align: center; 
+        }
+        .cs-pillars { 
+            list-style: none; 
+            padding: 0; 
+            max-width: 800px; 
+            margin: 20px auto 40px auto; 
+            text-align: left; 
+            counter-reset: item; 
+        }
+        .cs-pillars li { 
+            background-color: #3D1203; 
+            padding: 15px; 
+            margin-bottom: 10px; 
+            border-left: 3px solid var(--primary-color); 
+        }
+        .cs-pillars li::before { 
+            counter-increment: item; 
+            content: counter(item) ". "; 
+            font-weight: bold; 
+            color: var(--accent-color); 
+            margin-right: 10px; 
+        }
+        .about-us-section .info-line { 
+            font-size: 1.3em; 
+            font-weight: 700; 
+            margin-bottom: 20px; 
+        }
+        .about-us-section .info-main { 
+            font-size: 1.1em; 
+            line-height: 1.7; 
+            max-width: 900px; 
+            margin: 0 auto 30px auto; 
+            text-align: justify; 
+            padding: 0 15px; 
+        }
+
+        /* ---------------------------------------------------- */
+        /* --- SCROLL REVEAL CSS (Unified Looping Reveal) --- */
+        /* ---------------------------------------------------- */
+        /* .reveal-once class removed and merged into .reveal below */
+        
+        /* Initial (Hidden) State: Applies to gallery headings, announcements cards, and all about section text */
+        .reveal {
+            opacity: 0;
+            transform: scale(0.95) translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out; 
+        }
+
+        /* Final (Visible) State */
+        .reveal.active {
+            opacity: 1; 
+            transform: scale(1) translateY(0);
+            transition-delay: 0s;
+        }
+
+
+        /* --- RESPONSIVE ADJUSTMENTS (Unified) --- */
+        @media (max-width: 800px) {  
+            .grid-4-cols, .grid-3-cols {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 0;
+            }
+        }
+        @media (max-width: 500px) {
+            .sticky-header nav { display: none; }
+            .welcome-section h2 { font-size: 2.5em; }
+            .welcome-section p { font-size: 1.2em; }
+            
+            .announcement-section h2, .gallery-section h2, .officers-section .title, .about-us-section h2 { font-size: 2.2em; } 
+            .about-us-section .info-line { font-size: 1.1em; }
+
+            .grid-3-cols, .grid-4-cols {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .level-3::after, .level-4::after, .level-5::after, 
+            .level-3 .officer-card::after, .level-4 .officer-card::after, .level-5 .officer-card::after {
+                display: none;
+            }
+            .level {
+                gap: 10px;
+                padding-top: 0;
+            }
+            .level::before { height: 40px; }
+            .officer-card { margin-top: 0; }
+        }
+    </style>
+        
+    <section class="welcome-section">
+        <div class="dino-track">
+            <div class="dino-character"></div>
+        </div>
+
+        <div class="container">
+            <div class="welcome-content">
+                <h2>WELCOME TO BSCS 102</h2>
+                <p>
+        We are a dedicated community of future innovators at Kolehiyo ng Lungsod ng Dasmariñas, striving for excellence in technology.
+        <br><br>
+        Your hub for all things related to Bachelor of Science in Computer Science, Section 102!
+        </p>
+            </div>
+        </div>
+    </section>
+<br><br><br><br>
+    <section class="announcement-section">
+        <div class="container">
+            <h2 class="reveal">ANNOUNCEMENTS</h2> 
+            <p class="subtitle reveal">Latest updates and news from the BSCS 102 Officers.</p>
+
+            <div class="announcement-list">
+                
+                <div class="announcement-card reveal">
+                    <h3>COMP101 QUIZ NO. 7</h3>
+                    <span class="date">Posted: December 03, 2025</span>
+                    <p>
+                        Quiz/Seatwork <br> • 20 points </p>
+                </div>
+                
+                <div class="announcement-card reveal">
+                    <h3>COMP101 FINAL PROJECT</h3>
+                    <span class="date">Posted: November 21, 2025</span>
+                    <p>
+                        Major Exam <br> • 50 points</p>
+                </div>
+
+                <div class="announcement-card reveal">
+                    <h3>GEE003 FINAL PERFORMANCE- INFOGRAPHICS</h3>
+                    <span class="date">Posted: December 03, 2025</span>
+                    <p>
+                        Creating Infographics <br> • 100 points</p>
+                </div>
+
+                <div class="announcement-card">
+                    <h3>NSTP001 Final Exam (Video Compilation)</h3>
+                    <span class="date">Posted: December 01, 2025</span>
+                    <p>
+                        Create a self-made video or video compilation of ALL the following core topics aligning with the core values, MakaDIYOS, Maka-TAO, Maka-Bansa and Maka-Kalikasan.</p>
+                </div>
+
+                <div class="announcement-card">
+                    <h3>COMP101 WRITTEN EXAMINATION</h3>
+                    <span class="date">Exam date: December 10, 2025</span>
+                    <p>
+                        Room 1601 <br> • 1:00 - 3:00 pm </p>
+                </div>
+
+                <div class="announcement-card">
+                    <h3>COMP102 WRITTEN EXAMINATION</h3>
+                    <span class="date">Exam date: December 11, 2025</span>
+                    <p>
+                        Room 1501 <br> • 7:00 - 9:00 pm </p>
+                </div> 
+
+                <div class="announcement-card">
+                    <h3>COSC101 WRITTEN EXAMINATION</h3>
+                    <span class="date">Exam date: December 12, 2025</span>
+                    <p>
+                        Room 1501 <br> • 7:00 - 9:00 pm </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="officers-section">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="title">Class Officers</h2>
+            </div>
+            <p class="subtitle">BSCS 102 - Kolehiyo ng Lungsod ng Dasmariñas</p>
+
+            <div class="org-chart-style">
+                
+                <div class="level level-1">
+                    <div class="officer-card card-president">
+                        <div class="officer-photo" style="background-image: url('pres.jpg');"></div> 
+                        <p class="position">President</p>
+                        <h3>Samer Keidis Tabunan</h3>
+                    </div>
+                </div>
+
+                <div class="level level-2">
+                    <div class="officer-card card-vp">
+                        <div class="officer-photo" style="background-image: url('vp.jpg');"></div> 
+                        <p class="position">Vice President</p>
+                        <h3>Khryssa Nicole Ignacio</h3>
+                    </div>
+                </div>
+                
+                <div class="level level-3">
+                    <div class="grid-3-cols">
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('sec.jpg');"></div> 
+                            <p class="position">Secretary</p><h3>Leimer Sarte</h3>
+                        </div>
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('trwSURE.jpg');"></div> 
+                            <p class="position">Treasurer</p><h3>Trixia Cadeliña</h3>
+                        </div>
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('audit.jpg');"></div> 
+                            <p class="position">Auditor</p><h3>Princess Divine Enolva</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="level level-4">
+                    <div class="grid-4-cols">
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('pro1.jpg');"></div> 
+                            <p class="position">PRO</p><h3>Megan Austero</h3>
+                        </div>
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('data.jpg');"></div> 
+                            <p class="position">DPO</p><h3>Cj Cantor</h3>
+                        </div>
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('gad.jpg');"></div> 
+                            <p class="position">GAD</p><h3>Royce Solo</h3>
+                        </div>
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('pco2.jpg');"></div> 
+                            <p class="position">PCO</p><h3>Leaflor Bucio</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="level level-5">
+                    <div class="grid-3-cols">
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('pco.jpg');"></div> 
+                            <p class="position">PCO</p><h3>Mark Angelo Generalia</h3>
+                        </div>
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('muse.jpg');"></div> 
+                            <p class="position">Muse</p><h3>Ashly Lim</h3>
+                        </div>
+                        <div class="officer-card">
+                            <div class="officer-photo" style="background-image: url('escort.jpg');"></div> 
+                            <p class="position">Escort</p><h3>Vincent Arandia</h3>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-us-section">
+        <div class="container">
+            <h2 class="reveal">About Us</h2> 
+            <p class="info-line reveal">
+                We are the Bachelor of Science in Computer Science Section 102
+                from the Kolehiyo ng Lungsod ng Dasmariñas.
+            </p>
+            
+            <div class="info-main">
+                <p class="reveal">
+                    This page is the official information portal created for all members of BSCS 102.
+                    It serves as a central hub to identify elected officers, view important announcements, and document events within our section and course.
+                </p>
+                
+                <p class="reveal">
+                    We believe that the success of one is the success of all. Let us walk this stage together toward success in the field of technology and information, with responsibility and community in every step!
+                </p>
+                
+                <h3 style="margin-top: 50px;" class="reveal">💻 The Essence of Computer Science: More Than Just Coding</h3>
+                <p class="reveal">
+                    Computer Science (CS) is the <strong>study of computation, information, and automation</strong>. It is a discipline that spans theory and practical application, providing the foundational knowledge to solve complex problems across every industry imaginable.
+                </p>
+                <p class="reveal">
+                    As BSCS students, we are focused on four primary pillars:
+                </p>
+                <ul class="cs-pillars">
+                    <li class="reveal"><strong>Algorithms and Theory:</strong> Understanding the mathematical and logical principles that govern efficient problem-solving. This includes the rigorous study of data structures and algorithm design to build solutions that scale.</li>
+                    <li class="reveal"><strong>Software Development:</strong> Mastering the practice of writing, debugging, and maintaining executable code across various languages (e.g., Python, Java, C++). This skill transforms theory into tangible technology.</li>
+                    <li class="reveal"><strong>Data Analysis and Systems:</strong> Learning how to store, manage, secure, and extract insights from large datasets, and understanding the architecture of computer systems (hardware, networks, databases).</li>
+                    <li class="reveal"><strong>Innovation and Application:</strong> Applying these foundations to create new technologies, whether it’s building a modern web application, developing artificial intelligence, or ensuring cybersecurity.</li>
+                </ul>
+                <p style="margin-bottom: 50px;" class="reveal">
+                    By committing to these pillars, BSCS 102 prepares us to be not just coders, but thoughtful Computational Thinkers capable of designing the next generation of solutions.
+                </p>
+                <h3 style="text-align: center;" class="reveal">🚀 The Launchpad of BSCS 102: Our Shared Commitment</h3>
+                
+                <p class="reveal">
+                    Welcome, BSCS 102 Freshmen! This portal marks the beginning of an extraordinary academic journey. We are not just taking classes; we are building the future, line by line of code, and together we form the foundational class that will set the gold standard for Computer Science excellence here at Kolehiyo ng Lungsod ng Dasmariñas.
+                </p>
+
+                <p class="reveal">
+                    Our Advocacy the creation of a vibrant and organized learning environment is more than a motto; it is our daily mission. In this critical first year, let us commit wholeheartedly to the discipline required to master the core concepts. The journey through advanced programming, data analysis, and modern web development starts with a strong, unwavering foundation. We must embrace the rigor of learning, the complexity of algorithms, and the persistent practice of hands-on experience to effectively prepare ourselves for the relentless pace of change in the Computer Science field.
+                </p>
+                
+                <h3 style="text-align: center;" class="reveal">💡 Building Bridges, Not Walls</h3>
+                
+                <p class="reveal">
+                    Remember that the challenges you face—from debugging a complex script to grasping a new data structure are shared. This is where our belief truly comes alive: the success of one is the success of all. We encourage a culture of open collaboration and knowledge exchange. If you understand a concept, teach it. If you struggle, ask for help. Let us establish a robust network of peer-to-peer mentoring right now, ensuring that no member of BSCS 102 is left behind.
+                </p>
+                
+                <p class="reveal">
+                    As future Computer Scientists, we are also innovators and problem-solvers. Let us infuse our studies with creativity and a sense of responsibility. Every line of code we write, every system we design, must be approached with integrity and a deep consideration for its impact on the community.
+                </p>
+                
+                <h3 style="text-align: center;" class="reveal">🎯 Looking Ahead: The Computer Science Frontier</h3>
+                
+                <p class="reveal">
+                    This journey demands resilience. The Computer Science field is vast and constantly evolving, but by maintaining our focus on advanced programming, data analysis, and modern web development, and by prioritizing practical application, we will ensure that every graduate of BSCS 102 is industry-ready and equipped to lead.
+                </p>
+                
+                <p class="reveal">
+                    Let us embrace the next few years with unity, integrity, and relentless intellectual curiosity. We walk this stage together, not just toward graduation, but toward a successful, impactful career in technology and information.
+                </p>
+                
+                <p style="font-weight: bold; margin-top: 40px; font-size: 1.2em;" class="reveal">
+                    Your journey starts here. Let's make this first step a legendary one, built on responsibility and community!
+                </p>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('mainHeader');
+            if (header) { 
+                header.classList.add('load-active'); 
+            }
+
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observerOptions = {
+                root: null, 
+                threshold: 0.1,
+            };
+
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.classList.remove('active');
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

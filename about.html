@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BSCS 102</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --primary-color: #975f0c; 
+            --accent-color: #e08b0b; 
+            --secondary-color: #ffffff; 
+            --light-bg: #582b11; 
+            --white: #7a350d; 
+            --card-bg: #3D1203;
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            background-color: var(--light-bg);
+            min-height: 200vh; 
+        }
+
+        .sticky-header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 50;
+            background-color: var(--white); padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+        }
+        .sticky-header h1 { color: var(--primary-color); font-family: 'Bungee Spice', sans-serif; }
+        .sticky-header nav a { color: var(--secondary-color); text-decoration: none; margin-left: 25px; font-weight: 500; transition: color 0.3s; }
+        .sticky-header nav a:hover { color: var(--primary-color); }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding-top: 20px; }
+        .about-us-section { background-color: var(--light-bg); color: var(--secondary-color); padding: 100px 0 80px 0; text-align: center; }
+        .about-us-section h2 { font-size: 2.5em; margin-bottom: 30px; border-bottom: 3px solid var(--primary-color); display: inline-block; padding-bottom: 5px; color: var(--accent-color); font-family: 'Bungee Spice', sans-serif; }
+        .about-us-section h3 { font-size: 1.5em; margin: 40px 0 15px 0; color: var(--accent-color); text-align: center; }
+        .cs-pillars { list-style: none; padding: 0; max-width: 800px; margin: 20px auto 40px auto; text-align: left; counter-reset: item; }
+        .cs-pillars li { background-color: var(--card-bg); padding: 15px; margin-bottom: 10px; border-left: 3px solid var(--primary-color); }
+        .cs-pillars li::before { counter-increment: item; content: counter(item) ". "; font-weight: bold; color: var(--accent-color); margin-right: 10px; }
+        .about-us-section .info-line { font-size: 1.3em; font-weight: 700; margin-bottom: 20px; }
+        .about-us-section .info-main { font-size: 1.1em; line-height: 1.7; max-width: 900px; margin: 0 auto 30px auto; text-align: justify; padding: 0 15px; }
+        
+            .reveal {
+            opacity: 0;
+            transform: scale(0.95) translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out, opacity 0.7s 0.7s, transform 0.7s 0.7s; 
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out; 
+        }
+
+        .reveal.active {
+            opacity: 1; 
+            transform: scale(1) translateY(0);
+
+            transition-delay: 0s;
+        }
+
+        @media (max-width: 500px) {
+            .sticky-header nav { display: none; }
+            .about-us-section h2 { font-size: 2em; }
+            .about-us-section .info-line { font-size: 1.1em; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="sticky-header">
+        <h1>BSCS 102</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="announcements.html">Announcements</a>
+            <a href="officers.html">Officers</a>
+            <a href="about.html">About</a>
+            <a href="developers.html">Web Developers</a>
+        </nav>
+    </header>
+
+    <section id="about" class="about-us-section">
+        <div class="container">
+            <h2 class="reveal">About Us</h2> 
+            <p class="info-line reveal">
+                We are the Bachelor of Science in Computer Science Section 102
+                from the Kolehiyo ng Lungsod ng Dasmariñas.
+            </p>
+            
+            <div class="info-main">
+                <p class="reveal">
+                    This page is the official information portal created for all members of BSCS 102.
+                    It serves as a central hub to identify elected officers, view important announcements, and document events within our section and course.
+                </p>
+                
+                <p class="reveal">
+                    We believe that the success of one is the success of all. Let us walk this stage together toward success in the field of technology and information, with responsibility and community in every step!
+                </p>
+                
+                <h3 style="margin-top: 50px;" class="reveal">💻 The Essence of Computer Science: More Than Just Coding</h3>
+                <p class="reveal">
+                    Computer Science (CS) is the <strong>study of computation, information, and automation</strong>. It is a discipline that spans theory and practical application, providing the foundational knowledge to solve complex problems across every industry imaginable.
+                </p>
+                <p class="reveal">
+                    As BSCS students, we are focused on four primary pillars:
+                </p>
+                <ul class="cs-pillars">
+                    <li class="reveal"><strong>Algorithms and Theory:</strong> Understanding the mathematical and logical principles that govern efficient problem-solving. This includes the rigorous study of data structures and algorithm design to build solutions that scale.</li>
+                    <li class="reveal"><strong>Software Development:</strong> Mastering the practice of writing, debugging, and maintaining executable code across various languages (e.g., Python, Java, C++). This skill transforms theory into tangible technology.</li>
+                    <li class="reveal"><strong>Data Analysis and Systems:</strong> Learning how to store, manage, secure, and extract insights from large datasets, and understanding the architecture of computer systems (hardware, networks, databases).</li>
+                    <li class="reveal"><strong>Innovation and Application:</strong> Applying these foundations to create new technologies, whether it’s building a modern web application, developing artificial intelligence, or ensuring cybersecurity.</li>
+                </ul>
+                <p style="margin-bottom: 50px;" class="reveal">
+                    By committing to these pillars, BSCS 102 prepares us to be not just coders, but thoughtful Computational Thinkers capable of designing the next generation of solutions.
+                </p>
+                <h3 style="text-align: center;" class="reveal">🚀 The Launchpad of BSCS 102: Our Shared Commitment</h3>
+                
+                <p class="reveal">
+                    Welcome, BSCS 102 Freshmen! This portal marks the beginning of an extraordinary academic journey. We are not just taking classes; we are building the future, line by line of code, and together we form the foundational class that will set the gold standard for Computer Science excellence here at Kolehiyo ng Lungsod ng Dasmariñas.
+                </p>
+
+                <p class="reveal">
+                    Our Advocacy the creation of a vibrant and organized learning environment is more than a motto; it is our daily mission. In this critical first year, let us commit wholeheartedly to the discipline required to master the core concepts. The journey through advanced programming, data analysis, and modern web development starts with a strong, unwavering foundation. We must embrace the rigor of learning, the complexity of algorithms, and the persistent practice of hands-on experience to effectively prepare ourselves for the relentless pace of change in the Computer Science field.
+                </p>
+                
+                <h3 style="text-align: center;" class="reveal">💡 Building Bridges, Not Walls</h3>
+                
+                <p class="reveal">
+                    Remember that the challenges you face—from debugging a complex script to grasping a new data structure are shared. This is where our belief truly comes alive: the success of one is the success of all. We encourage a culture of open collaboration and knowledge exchange. If you understand a concept, teach it. If you struggle, ask for help. Let us establish a robust network of peer-to-peer mentoring right now, ensuring that no member of BSCS 102 is left behind.
+                </p>
+                
+                <p class="reveal">
+                    As future Computer Scientists, we are also innovators and problem-solvers. Let us infuse our studies with creativity and a sense of responsibility. Every line of code we write, every system we design, must be approached with integrity and a deep consideration for its impact on the community.
+                </p>
+                
+                <h3 style="text-align: center;" class="reveal">🎯 Looking Ahead: The Computer Science Frontier</h3>
+                
+                <p class="reveal">
+                    This journey demands resilience. The Computer Science field is vast and constantly evolving, but by maintaining our focus on advanced programming, data analysis, and modern web development, and by prioritizing practical application, we will ensure that every graduate of BSCS 102 is industry-ready and equipped to lead.
+                </p>
+                
+                <p class="reveal">
+                    Let us embrace the next few years with unity, integrity, and relentless intellectual curiosity. We walk this stage together, not just toward graduation, but toward a successful, impactful career in technology and information.
+                </p>
+                
+                <p style="font-weight: bold; margin-top: 40px; font-size: 1.2em;" class="reveal">
+                    Your journey starts here. Let's make this first step a legendary one, built on responsibility and community!
+                </p>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observerOptions = {
+                root: null, 
+                threshold: 0.1, 
+            };
+
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.classList.remove('active');
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+    </body>
+</html>
